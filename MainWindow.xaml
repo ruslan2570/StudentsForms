@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentsForms"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Курилка" Height="250" Width="400">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5" Height="30">
+            <Button Name="btnPrev" Click="btnPrev_Click" Content="Предыдущий" Margin="5"/>
+            <Button Name="btnDel" Click="btnDel_Click" Content="Удалить" Margin="5"/>
+            <Button Name="btnNext" Click="btnNext_Click" Content="Следующий" Margin="5"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock Text="№"/>
+                <TextBox Name="txStudNumber" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock Text="Студент "/>
+                <TextBox Name="txStudName"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Пол"/>
+                <RadioButton Name="rbGMale" GroupName="Gender" Content="Мужской"/>
+                <RadioButton Name="rbGFemale" GroupName="Gender" Content="Женский"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Специальность"/>
+                <ComboBox Name="cbSpec"/>
+            </StackPanel>
+        </StackPanel>
         
     </Grid>
 </Window>
