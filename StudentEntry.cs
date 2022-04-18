@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace StudentsForms
 {
-	internal class StudentEntry
+	/// <summary>
+	/// Это, по сути, штука, которая помогает нам в удобном виде хранить и передавать запись
+	/// Можно считать, будто это какая-нибудь запись в БД
+	/// EntityFramework как-то похожим образом работает
+	/// </summary>
+	internal class StudentEntry 
 	{
-
-		//public StudentEntry() { }
-
 
 		// Конструхтор, который принимает аргументы
 		public StudentEntry(int number, string name, string gender, int spec)

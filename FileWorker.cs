@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.IO;
 
 namespace StudentsForms
@@ -13,9 +15,22 @@ namespace StudentsForms
 
 		public FileWorker()
 		{
-			if (!file.Exists) file.Create();
+
+			if (!file.Exists)
+			{
+				file.Create();
+				MessageBox.Show("Файл создан!");
+				// Прикинь, если убрать MessageBox, то при первом запуске программы (или если мы файл "data" удалим) будет ошибка
+				// метод file.Create(); создавал файл, а в это время его пытался использовать PullEntry
+
+			}
 		}
 
+		/// <summary>
+		/// Получаем запись из файла
+		/// </summary>
+		/// <param name="number">номер записи</param>
+		/// <returns>запись</returns>
 		public StudentEntry PullEntry(int number)
 		{
 			// Ищем строку с соответствующим запросу номером.
@@ -25,6 +40,9 @@ namespace StudentsForms
 				string[] sa;
 				while (!sr.EndOfStream)
 				{
+					// Здесь начинается магия
+					// Берем строку (посмотри обязательно содержимое файла "data") и расчленяем её (РЕЗНЯ!!)
+					// потом засовываем всё в массив, а потом в запись
 					sa = sr.ReadLine().Split(',');
 					if (int.Parse(sa[0]) == number)
 					{
@@ -36,7 +54,10 @@ namespace StudentsForms
 			return null;
 		}
 
-
+		/// <summary>
+		/// Запишет запись
+		/// </summary>
+		/// <param name="se">Запись, которую необходимо записать</param>
 		public void PushEntry(StudentEntry se)
 		{
 
@@ -51,6 +72,10 @@ namespace StudentsForms
 			}
 		}
 
+		/// <summary>
+		/// Дает количество записей (вроде работает правильно, никак не могу проверить)
+		/// </summary>
+		/// <returns></returns>
 		public int GetEntryCount()
 		{
 			// Считаем количество строк и возвращаем.
