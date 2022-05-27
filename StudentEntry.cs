@@ -9,7 +9,6 @@ namespace StudentsForms
 	/// <summary>
 	/// Это, по сути, штука, которая помогает нам в удобном виде хранить и передавать запись
 	/// Можно считать, будто это какая-нибудь запись в БД
-	/// EntityFramework как-то похожим образом работает
 	/// </summary>
 	internal class StudentEntry 
 	{

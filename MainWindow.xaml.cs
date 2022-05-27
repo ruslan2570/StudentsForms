@@ -60,6 +60,13 @@ namespace StudentsForms
 			SaveInfo();
 		}
 
+		// Удаляем
+		private void btnDel_Click(object sender, RoutedEventArgs e)
+		{
+			fw.DeleteEntry(Convert.ToInt32(txStudNumber.Text));
+		}
+
+
 		// листаем вперед
 		private void btnNext_Click(object sender, RoutedEventArgs e)
 		{
@@ -115,5 +122,7 @@ namespace StudentsForms
 			rbGMale.IsChecked = false;
 			cbSpec.SelectedIndex = -1;
 		}
+
+
 	}
 }

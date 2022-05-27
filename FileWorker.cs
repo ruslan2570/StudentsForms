@@ -72,10 +72,6 @@ namespace StudentsForms
 			}
 		}
 
-		/// <summary>
-		/// Дает количество записей (вроде работает правильно, никак не могу проверить)
-		/// </summary>
-		/// <returns></returns>
 		public int GetEntryCount()
 		{
 			// Считаем количество строк и возвращаем.
@@ -90,6 +86,65 @@ namespace StudentsForms
 			}
 			return number;
 		}
+
+		public void DeleteEntry(int index)
+		{
+			string finalstring = "";
+
+
+			using (StreamReader sr = new StreamReader(file.Name))
+			{
+				string fileString;
+				fileString = sr.ReadToEnd();
+				string[] entriesString = fileString.Split('\n');
+
+				for (int i = 0; i < entriesString.Length - 1; i++)
+				{
+					string entry = entriesString[i];
+					string[] entryCompose = entry.Split(',');
+					if (int.Parse(entryCompose[0]) == index)
+						entriesString[i] = "";
+				}
+
+				foreach (string yetanotherstroka in entriesString)
+				{
+					if (yetanotherstroka != "")
+						finalstring += yetanotherstroka + '\n';
+				}
+
+				sr.Close();
+			}
+
+			using (StreamWriter sw = new StreamWriter(file.Name))
+			{
+				sw.Write(RefreshNumber(finalstring));
+				sw.Close();
+			}
+		}
+
+
+
+		private string RefreshNumber(string origin)
+		{
+			string[] entriesString = origin.Split('\n');
+			string finalString = "";
+
+			for (int i = 0; i < entriesString.Length - 1; i++)
+			{
+				string entry = entriesString[i];
+
+				string[] entryCompose = entry.Split(',');
+				entryCompose[0] = i.ToString();
+
+				entriesString[i] = $"{entryCompose[0]},{entryCompose[1]}," +
+					$"{entryCompose[2]},{entryCompose[3]}\n";
+			}
+			foreach (string s in entriesString)
+				finalString += s;
+
+			return finalString;
+		}
+
 	}
 
 

@@ -15,6 +15,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5" Height="30">
             <Button Name="btnPrev" Click="btnPrev_Click" Content="Предыдущий" Margin="5"/>
             <Button Name="btnSave" Click="btnSave_Click" Content="Сохранить" Margin="5"/>
+            <Button Name="btnDel" Click="btnDel_Click" Content="Удалить" Margin="5"/>
             <Button Name="btnNext" Click="btnNext_Click" Content="Следующий" Margin="5"/>
 
         </StackPanel>
